@@ -29,14 +29,8 @@ export class AuthService {
       },
       // if false of error console alert something went wrong
       (err) => {
-        Swal.fire(err.message);
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Something Went Wrong',
-          showCancelButton: false, // There won't be any cancel button
-          showConfirmButton: false, // There won't be any confirm button
-        });
+        alert(err.message);
+        alert('Something Went Wrong');
         this.router.navigate(['/login']);
       }
     );
@@ -49,23 +43,11 @@ export class AuthService {
       (res) => {
         // if registration is succesful console alert 'Registration Succesful'
         // then navigate to the router login
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Registration Succesful',
-          showCancelButton: false, // There won't be any cancel button
-          showConfirmButton: false, // There won't be any confirm button
-        });
+        alert('Registration Succesful');
         this.sendEmailForVerification(res.user);
         if (res.user?.emailVerified == true) {
           res.user.reload().then(() => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Authentication Succesful',
-              showCancelButton: false, // There won't be any cancel button
-              showConfirmButton: false, // There won't be any confirm button
-            });
+            alert('Authentication Succesful');
             this.router.navigate(['/login']);
           });
           this.router.navigate(['/login']);
@@ -83,14 +65,8 @@ export class AuthService {
       // if false of error console alert something went wrong
       // then navigate again the register
       (err) => {
-        Swal.fire(err.message);
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Account Already Exist',
-          showCancelButton: false, // There won't be any cancel button
-          showConfirmButton: false, // There won't be any confirm button
-        });
+        alert(err.message);
+        alert('Account Already Exist');
         this.router.navigate(['/register']);
       }
     );
@@ -121,13 +97,7 @@ export class AuthService {
         this.router.navigate(['/verify-email']);
       },
       (err) => {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Something Went Wrong',
-          showCancelButton: false, // There won't be any cancel button
-          showConfirmButton: false, // There won't be any confirm button
-        });
+        alert('Something Went Wrong');
       }
     );
   }
@@ -135,12 +105,7 @@ export class AuthService {
   // Email Verification
   sendEmailForVerification(user: any) {
     this.fireAuth.currentUser
-      // .then((u) => u?.sendEmailVerification())
-      // .then(
-      //   () => {
-      //     this.router.navigate(['/verify-email']);
-      //     user.reload();
-      //   },
+
       .then((user) => {
         return user?.sendEmailVerification();
       })
@@ -149,13 +114,7 @@ export class AuthService {
           this.router.navigate(['verify-email']);
         },
         (err) => {
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Something Went Wrong. Not able to send mail to your Email',
-            showCancelButton: false, // There won't be any cancel button
-            showConfirmButton: false, // There won't be any confirm button
-          });
+          alert('Something Went Wrong. Not able to send mail to your Email');
         }
       );
   }

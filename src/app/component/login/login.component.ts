@@ -24,23 +24,13 @@ export class LoginComponent implements OnInit {
     // If Login Doesn't have an email
     // Alert will show enter Email
     if (this.email == '') {
-      Swal.fire({
-        icon: 'question',
-        title: 'Please Enter Email',
-        showCancelButton: false, // There won't be any cancel button
-        showConfirmButton: false, // There won't be any confirm button
-      });
+      alert('Please Enter Email');
       return;
     }
     // If Login Doesn't have an password
     // Alert will show enter Password
     if (this.password == '') {
-      Swal.fire({
-        icon: 'question',
-        title: 'Please Enter Password',
-        showCancelButton: false, // There won't be any cancel button
-        showConfirmButton: false, // There won't be any confirm button
-      });
+      alert('Please Enter Password');
       return;
     }
 
