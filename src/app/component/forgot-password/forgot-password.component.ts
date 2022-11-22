@@ -7,6 +7,9 @@ import { AuthService } from 'src/app/shared/auth.service';
   styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordComponent implements OnInit {
+  //  Background
+  Background: string = 'assets/BG.png';
+  // ----------------------------------
   email: string = '';
   constructor(private auth: AuthService) {}
 

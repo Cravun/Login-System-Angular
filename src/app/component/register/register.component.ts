@@ -8,6 +8,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  //  Background
+  Background: string = 'assets/BG.png';
+  // ----------------------------------
   email: string = '';
   password: string = '';
   constructor(private auth: AuthService) {}
