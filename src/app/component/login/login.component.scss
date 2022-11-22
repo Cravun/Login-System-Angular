@@ -16,12 +16,7 @@ h1.text-xs-center {
 }
 
 mat-card {
-  background: linear-gradient(
-    135.81deg,
-    #8f98ff 0%,
-    rgba(217, 217, 217, 0) 165.11%
-  );
-  border-radius: 45px;
+  border-radius: 40px;
   position: relative;
   top: 12em;
   height: 360px;
@@ -39,14 +34,9 @@ mat-card {
 }
 .Login-Button {
   p {
+    font-size: 20px;
     a {
-      color: black;
-      font-weight: 400;
-      font-size: 20px;
-      top: 0.8em;
-      position: relative;
-      top: 2.8em;
-      left: -1em;
+      color: #449d44;
     }
   }
 }
@@ -62,14 +52,13 @@ form {
 }
 
 .b-3 {
+  text-align: center;
   a {
     font-size: 20px;
   }
 }
 
 button.btn.btn-primary {
-  width: 110px;
-  top: 0.8em;
-  right: 1.2em;
+  width: 100%;
   position: relative;
 }

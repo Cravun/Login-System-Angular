@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +7,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  //  Background
-  Background: string = 'assets/BG.png';
-  // ----------------------------------
   email: string = '';
   password: string = '';
 

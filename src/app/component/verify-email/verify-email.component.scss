@@ -1,31 +1,15 @@
-.Background {
-  img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-}
-
 mat-card {
-  background: linear-gradient(
-    135.81deg,
-    #8f98ff 0%,
-    rgba(217, 217, 217, 0) 165.11%
-  );
-  border-radius: 45px;
+  border-radius: 40px;
   position: relative;
   top: 12em;
-  height: 150px;
+  height: 360px;
 }
-
-.Login-Button {
-  p {
-    a {
-      color: red;
-      font-weight: 400;
-      font-size: 20px;
-      top: 0.2em;
-      position: relative;
-    }
+label.form-label {
+  color: #000000;
+  font-size: 20px;
+}
+form {
+  input {
+    border: 1px solid;
   }
 }

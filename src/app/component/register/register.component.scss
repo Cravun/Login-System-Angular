@@ -1,11 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&family=Roboto&display=swap");
-
-// Background in Register
-.Background {
-  img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+mat-card {
+  border-radius: 40px;
+  position: relative;
+  top: 12em;
+  height: 360px;
+}
+label.form-label {
+  color: #000000;
+  font-size: 20px;
+}
+form {
+  input {
+    border: 1px solid;
   }
 }
 
@@ -15,45 +20,9 @@ h1.text-xs-center {
   color: #000000;
 }
 
-mat-card {
-  background: linear-gradient(
-    135.81deg,
-    #8f98ff 0%,
-    rgba(217, 217, 217, 0) 165.11%
-  );
-  border-radius: 45px;
-  position: relative;
-  top: 12em;
-}
-
-// Already Have An Account
-.Login-Link {
-  p {
-    a {
-      color: black;
-      font-weight: 400;
-      font-size: 20px;
-    }
-  }
-}
-.Login-Button {
-  p {
-    a {
-      color: black;
-      font-weight: 400;
-      font-size: 20px;
-      top: 0.8em;
-      position: relative;
-    }
-  }
-}
-
-label.form-label {
-  color: #000000;
+p.text-xs-center {
   font-size: 20px;
-}
-form {
-  input {
-    border: 1px solid;
+  a {
+    color: black;
   }
 }
