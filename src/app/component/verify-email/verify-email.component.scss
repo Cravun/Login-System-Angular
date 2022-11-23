@@ -8,6 +8,10 @@ label.form-label {
   color: #000000;
   font-size: 20px;
 }
+.mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+  background: none;
+}
 form {
   input {
     border: 1px solid;

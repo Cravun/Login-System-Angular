@@ -1,17 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
-
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  //  Background
+  Background: string = 'assets/BG.png';
+  // ----------------------------------
   email: string = '';
   password: string = '';
 
   // Injecting auth-service to use FireAngularAuth Function
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private Sanitizer: DomSanitizer,
+    private MatIcon: MatIconRegistry
+  ) {
+    this.MatIcon.addSvgIcon(
+      'Logo-Karl',
+      this.Sanitizer.bypassSecurityTrustResourceUrl('.../assets/svg/logo.svg')
+    );
+  }
 
   ngOnInit(): void {}
 

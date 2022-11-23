@@ -7,6 +7,11 @@ import { AuthService } from 'src/app/shared/auth.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  //  Background
+  Background: string = 'assets/BG.png';
+  // ----------------------------------
+
+  Logo: String = 'assets/Logo.png';
   user: string = '';
   constructor(private auth: AuthService) {}
 

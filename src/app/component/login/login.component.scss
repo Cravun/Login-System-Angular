@@ -14,7 +14,10 @@ h1.text-xs-center {
   font-weight: 400;
   color: #000000;
 }
-
+.mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+  background: none;
+}
 mat-card {
   border-radius: 40px;
   position: relative;
@@ -36,7 +39,7 @@ mat-card {
   p {
     font-size: 20px;
     a {
-      color: #449d44;
+      color: black;
     }
   }
 }
@@ -60,5 +63,10 @@ form {
 
 button.btn.btn-primary {
   width: 100%;
+  position: relative;
+}
+
+a.text-dark {
+  top: 1em;
   position: relative;
 }
