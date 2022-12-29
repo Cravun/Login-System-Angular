@@ -1,23 +1,66 @@
-<div class="container page">
+<!-- <div class="container page">
   <div class="row">
     <div class="col-md-6 offset-md-3 col-xs-12">
       <form>
-        <h1 class="text-xs-center">Welcome User</h1>
+        <h1 class="text-xs-center">Welcome</h1>
         <div class="card-body">
           <div class="mb-3">
             <p class="text-xs-center"></p>
           </div>
-          <button
-            style="position: absolute"
-            style="float: center"
-            type="button"
-            class="btn btn-primary"
-            (click)="Logout()"
-          >
-            Logout
-          </button>
+     
         </div>
       </form>
     </div>
   </div>
+</div> -->
+
+<!-- Top navigation -->
+<nav
+  class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow"
+></nav>
+<!-- Sidebar navigation -->
+<div class="row">
+  <nav class="col-md-2 d-md-block bg-light sidebar"></nav>
+  <!-- Main content -->
+  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="inner-adjust">
+      <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">User Profile</h1>
+      </div>
+      <!-- Show user data when logged in -->
+      <div class="row" *ngIf="auth.userData as User">
+        <div class="col-md-12">
+          <div class="media">
+            <!-- <img
+                class="align-self-start mr-5 img-thumbnail rounded-circle"
+                src="{{
+                  User.photoURL ? User.photoURL : '/assets/dummy-user.png'
+                }}"
+                alt="{{ User.displayName }}"
+              /> -->
+            <div class="media-body">
+              <!-- <h1>
+                  Hello:
+                  <strong>{{
+                    User.displayName ? User.displayName : "User"
+                  }}</strong>
+                </h1> -->
+              <hr />
+              <p>
+                Email Verified:
+                <strong>{{ User.emailVerified }}</strong>
+              </p>
+              <hr />
+            </div>
+          </div>
+          <!-- Calling SignOut() Api from AuthService -->
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-primary" (click)="Logout()">
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>

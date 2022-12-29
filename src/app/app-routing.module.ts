@@ -33,7 +33,6 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
-
+import { AuthService } from './shared/auth.service';
+// Importing Custom Pipe
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import { VerifyEmailComponent } from './component/verify-email/verify-email.comp
     FormsModule,
     SweetAlert2Module,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

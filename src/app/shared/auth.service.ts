@@ -1,25 +1,47 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { User } from './services/user';
 import { Router } from '@angular/router';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/compat/firestore';
 import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  userData: any;
   // AngularFireAuth is for observable of data input and to monitor applications Authentication
-  constructor(private fireAuth: AngularFireAuth, private router: Router) {}
-
+  constructor(
+    public FireStore: AngularFirestore,
+    private fireAuth: AngularFireAuth,
+    private router: Router
+  ) {
+    /* Saving user data in localstorage when 
+    logged in and setting up null when logged out */
+    this.fireAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
+      } else {
+        localStorage.setItem('user', 'null');
+        JSON.parse(localStorage.getItem('user')!);
+      }
+    });
+  }
   //Login Method
   // To Authenticate Login of Email and Password using Angular Firestore Authentication
   login(email: string, password: string) {
     // using Angular Fire auth to the function Sign in with Email
     this.fireAuth.signInWithEmailAndPassword(email, password).then(
-      (res) => {
+      (User) => {
         // to authenticate account using token if exist
         localStorage.setItem('token', 'true');
 
         // if router is succesfull it will navigate through the dashboard
-        if (res.user?.emailVerified == true) {
+        if (User.user?.emailVerified == true) {
           this.router.navigate(['/dashboard']);
         }
         // else again verify email
@@ -46,46 +68,36 @@ export class AuthService {
   // Registering account using Fireauth function createUserWithEmailAndPassword
   register(email: string, password: string) {
     this.fireAuth.createUserWithEmailAndPassword(email, password).then(
-      (res) => {
+      (User) => {
         // if registration is succesful console alert 'Registration Succesful'
         // then navigate to the router login
         Swal.fire({
-          position: 'center',
           icon: 'success',
           title: 'Registration Succesful',
           showCancelButton: false, // There won't be any cancel button
           showConfirmButton: false, // There won't be any confirm button
         });
-        this.sendEmailForVerification(res.user);
-        if (res.user?.emailVerified == true) {
-          res.user.reload().then(() => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Authentication Succesful',
-              showCancelButton: false, // There won't be any cancel button
-              showConfirmButton: false, // There won't be any confirm button
-            });
-            this.router.navigate(['/login']);
+        // Creating parameter Res for user to have OTTP Verification
+        // setting the res parameter to the sendEmaiForVerification to
+        this.sendEmailForVerification(User.user);
+        if (User.user?.emailVerified == true) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Authentication Succesful',
+            showCancelButton: false, // There won't be any cancel button
+            showConfirmButton: false, // There won't be any confirm button
           });
           this.router.navigate(['/login']);
           // else verify email
         } else {
           this.router.navigate(['verify-email']);
         }
-        // Creating parameter Res for user to have OTTP Verification
-        // this.router.navigate(['/login']);
-        // setting the res parameter to the sendEmaiForVerification to
-
-        // this.sendEmailForVerification(res.user);
       },
-
       // if false of error console alert something went wrong
       // then navigate again the register
       (err) => {
         Swal.fire(err.message);
         Swal.fire({
-          position: 'center',
           icon: 'error',
           title: 'Account Already Exist',
           showCancelButton: false, // There won't be any cancel button
@@ -95,7 +107,11 @@ export class AuthService {
       }
     );
   }
-
+  // Email Verification Validator Method
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null && user.emailVerified !== false ? true : false;
+  }
   // Sign out Method
   logout() {
     // using Angular Fire auth to for relation database logout
@@ -122,7 +138,6 @@ export class AuthService {
       },
       (err) => {
         Swal.fire({
-          position: 'center',
           icon: 'error',
           title: 'Something Went Wrong',
           showCancelButton: false, // There won't be any cancel button
@@ -141,21 +156,15 @@ export class AuthService {
       //     this.router.navigate(['/verify-email']);
       //     user.reload();
       //   },
-      .then((user) => {
-        return user?.sendEmailVerification();
+      .then((User) => {
+        return User?.sendEmailVerification();
       })
       .then(
         () => {
           this.router.navigate(['verify-email']);
         },
         (err) => {
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Something Went Wrong. Not able to send mail to your Email',
-            showCancelButton: false, // There won't be any cancel button
-            showConfirmButton: false, // There won't be any confirm button
-          });
+          alert("Something Went Wrong. Not able to send mail to your Email'");
         }
       );
   }
