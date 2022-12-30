@@ -10,9 +10,6 @@
 }
 
 h1.text-xs-center {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  color: #000000;
 }
 .mat-card:not([class*="mat-elevation-z"]) {
   box-shadow: none;
@@ -29,9 +26,6 @@ mat-card {
 .Login-Link {
   p {
     a {
-      color: black;
-      font-weight: 400;
-      font-size: 20px;
     }
   }
 }
@@ -39,7 +33,6 @@ mat-card {
   p {
     font-size: 20px;
     a {
-      color: black;
     }
   }
 }

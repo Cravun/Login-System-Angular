@@ -8,23 +8,11 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  //  Background
-  Background: string = 'assets/BG.png';
-  // ----------------------------------
   email: string = '';
   password: string = '';
 
   // Injecting auth-service to use FireAngularAuth Function
-  constructor(
-    private auth: AuthService,
-    private Sanitizer: DomSanitizer,
-    private MatIcon: MatIconRegistry
-  ) {
-    this.MatIcon.addSvgIcon(
-      'Logo-Karl',
-      this.Sanitizer.bypassSecurityTrustResourceUrl('.../assets/svg/logo.svg')
-    );
-  }
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {}
 

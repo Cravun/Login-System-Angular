@@ -51,9 +51,13 @@ export class AuthService {
       },
       // if false of error console alert something went wrong
       (err) => {
-        alert(err.message);
-        alert('Something Went Wrong');
-        this.router.navigate(['/login']);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Something Went Wrong',
+          showCancelButton: false, // There won't be any cancel button
+          showConfirmButton: false, // There won't be any confirm button
+        });
       }
     );
   }
@@ -62,7 +66,7 @@ export class AuthService {
   // Registering account using Fireauth function createUserWithEmailAndPassword
   register(email: string, password: string) {
     this.fireAuth.createUserWithEmailAndPassword(email, password).then(
-      (User) => {
+      (res) => {
         // if registration is succesful console alert 'Registration Succesful'
         // then navigate to the router login
         Swal.fire({
@@ -121,7 +125,7 @@ export class AuthService {
         this.router.navigate(['/login']);
       },
       (err) => {
-        alert(err.message);
+        Swal.fire(err.message);
       }
     );
   }

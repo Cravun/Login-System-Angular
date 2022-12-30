@@ -1,12 +1,14 @@
-<div class="Background">
-  <img [src]="Background" />
-</div>
 <div class="container page">
   <div class="row">
     <div class="col-md-6 offset-md-3 col-xs-12">
       <mat-card>
         <form>
           <h1 class="text-xs-center">Sign Up</h1>
+          <div class="Login-Button">
+            <p class="text-xs-center">
+              <a [routerLink]="['/login']">Already Have an account</a>
+            </p>
+          </div>
           <div class="mb-3">
             <label for="exampleInputEmail" class="form-label">Email:</label>
             <input
@@ -28,19 +30,9 @@
             />
           </div>
           <div class="d-grid gap-2">
-            <button
-              type="button"
-              class="btn btn-primary"
-              style="border-color: #121111; background-color: #121111"
-              (click)="register()"
-            >
+            <button type="button" class="btn btn-primary" (click)="register()">
               Register
             </button>
-          </div>
-          <div class="Login-Button">
-            <p class="text-xs-center">
-              <a [routerLink]="['/login']">Already Have an account</a>
-            </p>
           </div>
         </form>
       </mat-card>
