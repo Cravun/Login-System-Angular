@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
 import Swal from 'sweetalert2';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -9,9 +8,9 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private auth: AuthService) {}
-
-  username: string = '';
+  //  Background
+  Background: string = 'assets/BG.png';
+  // ----------------------------------
   email: string = '';
   password: string = '';
   ngOnInit(): void {
@@ -23,12 +22,7 @@ export class RegisterComponent implements OnInit {
     // If Register Doesn't have an email
     // Alert will show enter Email
     if (this.email == '') {
-      Swal.fire({
-        icon: 'question',
-        title: 'Please Enter Email',
-        showCancelButton: false, // There won't be any cancel button
-        showConfirmButton: false, // There won't be any confirm button
-      });
+      alert('Please Enter Email');
       return;
     }
     // If Register Doesn't have an password

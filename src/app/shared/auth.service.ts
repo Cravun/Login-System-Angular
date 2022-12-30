@@ -51,14 +51,8 @@ export class AuthService {
       },
       // if false of error console alert something went wrong
       (err) => {
-        Swal.fire(err.message);
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Something Went Wrong',
-          showCancelButton: false, // There won't be any cancel button
-          showConfirmButton: false, // There won't be any confirm button
-        });
+        alert(err.message);
+        alert('Something Went Wrong');
         this.router.navigate(['/login']);
       }
     );
@@ -72,20 +66,23 @@ export class AuthService {
         // if registration is succesful console alert 'Registration Succesful'
         // then navigate to the router login
         Swal.fire({
+          position: 'center',
           icon: 'success',
           title: 'Registration Succesful',
           showCancelButton: false, // There won't be any cancel button
           showConfirmButton: false, // There won't be any confirm button
         });
-        // Creating parameter Res for user to have OTTP Verification
-        // setting the res parameter to the sendEmaiForVerification to
-        this.sendEmailForVerification(User.user);
-        if (User.user?.emailVerified == true) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Authentication Succesful',
-            showCancelButton: false, // There won't be any cancel button
-            showConfirmButton: false, // There won't be any confirm button
+        this.sendEmailForVerification(res.user);
+        if (res.user?.emailVerified == true) {
+          res.user.reload().then(() => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Authentication Succesful',
+              showCancelButton: false, // There won't be any cancel button
+              showConfirmButton: false, // There won't be any confirm button
+            });
+            this.router.navigate(['/login']);
           });
           this.router.navigate(['/login']);
           // else verify email
@@ -98,6 +95,7 @@ export class AuthService {
       (err) => {
         Swal.fire(err.message);
         Swal.fire({
+          position: 'center',
           icon: 'error',
           title: 'Account Already Exist',
           showCancelButton: false, // There won't be any cancel button
@@ -138,6 +136,7 @@ export class AuthService {
       },
       (err) => {
         Swal.fire({
+          position: 'center',
           icon: 'error',
           title: 'Something Went Wrong',
           showCancelButton: false, // There won't be any cancel button
@@ -156,15 +155,21 @@ export class AuthService {
       //     this.router.navigate(['/verify-email']);
       //     user.reload();
       //   },
-      .then((User) => {
-        return User?.sendEmailVerification();
+      .then((user) => {
+        return user?.sendEmailVerification();
       })
       .then(
         () => {
           this.router.navigate(['verify-email']);
         },
         (err) => {
-          alert("Something Went Wrong. Not able to send mail to your Email'");
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Something Went Wrong. Not able to send mail to your Email',
+            showCancelButton: false, // There won't be any cancel button
+            showConfirmButton: false, // There won't be any confirm button
+          });
         }
       );
   }

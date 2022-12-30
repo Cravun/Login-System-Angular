@@ -1,42 +1,60 @@
+<div class="Background">
+  <img [src]="Background" />
+</div>
+
 <div class="container page">
   <div class="row">
     <div class="col-md-6 offset-md-3 col-xs-12">
-      <form>
-        <h1 class="text-xs-center">Sign in</h1>
-        <p class="text-xs-center">
-          <a [routerLink]="['/register']">Need an account? </a>
-        </p>
-        <div class="mb-3">
-          <label for="exampleInputEmail" class="form-label">Email:</label>
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            [(ngModel)]="email"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword" class="form-label">Password:</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password"
-            [(ngModel)]="password"
-          />
-        </div>
-        <button type="button" class="btn btn-primary" (click)="login()">
-          Login
-        </button>
-        <div class="b-3" style="float: right">
-          <a
-            [routerLink]="['/forgot-password']"
-            class="text-dark"
-            style="float: right; margin-top: 1rem !important"
-          >
-            Forget Password?
-          </a>
-        </div>
-      </form>
+      <mat-icon svgIcon="Logo-Karl"> </mat-icon>
+      <mat-card>
+        <form>
+          <h1 class="text-xs-center">Sign in</h1>
+          <div class="Login-Button">
+            <p class="text-xs-center">
+              <a [routerLink]="['/register']">Create an Account</a>
+            </p>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              [(ngModel)]="email"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword" class="form-label"
+              >Password:</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              [(ngModel)]="password"
+            />
+          </div>
+          <div class="d-grid gap-2">
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="border-color: #121111; background-color: #121111"
+              (click)="login()"
+            >
+              Register
+            </button>
+          </div>
+          <div class="b-3">
+            <a
+              [routerLink]="['/forgot-password']"
+              class="text-dark"
+              style="text-align: center; margin-top: 1rem !important"
+            >
+              Forget Password?
+            </a>
+          </div>
+        </form>
+      </mat-card>
     </div>
   </div>
 </div>

@@ -1,18 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
-import Swal from 'sweetalert2';
-
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  //  Background
+  Background: string = 'assets/BG.png';
+  // ----------------------------------
   email: string = '';
   password: string = '';
 
   // Injecting auth-service to use FireAngularAuth Function
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private Sanitizer: DomSanitizer,
+    private MatIcon: MatIconRegistry
+  ) {
+    this.MatIcon.addSvgIcon(
+      'Logo-Karl',
+      this.Sanitizer.bypassSecurityTrustResourceUrl('.../assets/svg/logo.svg')
+    );
+  }
 
   ngOnInit(): void {}
 
@@ -21,23 +33,13 @@ export class LoginComponent implements OnInit {
     // If Login Doesn't have an email
     // Alert will show enter Email
     if (this.email == '') {
-      Swal.fire({
-        icon: 'question',
-        title: 'Please Enter Email',
-        showCancelButton: false, // There won't be any cancel button
-        showConfirmButton: false, // There won't be any confirm button
-      });
+      alert('Please Enter Email');
       return;
     }
     // If Login Doesn't have an password
     // Alert will show enter Password
     if (this.password == '') {
-      Swal.fire({
-        icon: 'question',
-        title: 'Please Enter Password',
-        showCancelButton: false, // There won't be any cancel button
-        showConfirmButton: false, // There won't be any confirm button
-      });
+      alert('Please Enter Password');
       return;
     }
 
